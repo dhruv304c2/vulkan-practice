@@ -11,14 +11,14 @@
 #include <stdio.h>
 #include "app_window.hpp"
 
-namespace app{
-    class App{
+namespace process{
+    class Process{
         public:
             static constexpr int width = 800;
             static constexpr int height = 600;
             void run();
         private:
-            AppWindow app_window{width,height,"Hello vulkan!"};
+            ProcessWindow window{width,height,"Hello vulkan!"};
     };
 }
 #endif /* app_hpp */

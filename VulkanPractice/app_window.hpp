@@ -11,11 +11,11 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
-namespace app {
-    class AppWindow{
+namespace process {
+    class ProcessWindow{
         public:
-            AppWindow(int width, int height, std::string name);
-            ~AppWindow();
+            ProcessWindow(int width, int height, std::string name);
+            ~ProcessWindow();
             bool should_close(){return glfwWindowShouldClose(window);}
         private:
             void init_window();

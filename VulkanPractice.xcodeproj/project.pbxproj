@@ -15,7 +15,7 @@
 		5363A3EE2A8022BC00C17031 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5363A3ED2A8022BC00C17031 /* libglfw.3.3.dylib */; };
 		5363A3F02A8022C800C17031 /* libglfw.3.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5363A3EF2A8022C800C17031 /* libglfw.3.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		5363A3F32A80299900C17031 /* app_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3F12A80299900C17031 /* app_window.cpp */; };
-		5363A3F62A802F8900C17031 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3F42A802F8900C17031 /* app.cpp */; };
+		5363A3F62A802F8900C17031 /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3F42A802F8900C17031 /* process.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,8 +46,8 @@
 		5363A3EF2A8022C800C17031 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../../opt/homebrew/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		5363A3F12A80299900C17031 /* app_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app_window.cpp; sourceTree = "<group>"; };
 		5363A3F22A80299900C17031 /* app_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = app_window.hpp; sourceTree = "<group>"; };
-		5363A3F42A802F8900C17031 /* app.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
-		5363A3F52A802F8900C17031 /* app.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = app.hpp; sourceTree = "<group>"; };
+		5363A3F42A802F8900C17031 /* process.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = process.cpp; sourceTree = "<group>"; };
+		5363A3F52A802F8900C17031 /* process.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = process.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +90,8 @@
 				5363A3D12A8013FA00C17031 /* main.cpp */,
 				5363A3F12A80299900C17031 /* app_window.cpp */,
 				5363A3F22A80299900C17031 /* app_window.hpp */,
-				5363A3F42A802F8900C17031 /* app.cpp */,
-				5363A3F52A802F8900C17031 /* app.hpp */,
+				5363A3F42A802F8900C17031 /* process.cpp */,
+				5363A3F52A802F8900C17031 /* process.hpp */,
 			);
 			path = VulkanPractice;
 			sourceTree = "<group>";
@@ -165,7 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5363A3F62A802F8900C17031 /* app.cpp in Sources */,
+				5363A3F62A802F8900C17031 /* process.cpp in Sources */,
 				5363A3D22A8013FA00C17031 /* main.cpp in Sources */,
 				5363A3F32A80299900C17031 /* app_window.cpp in Sources */,
 			);
