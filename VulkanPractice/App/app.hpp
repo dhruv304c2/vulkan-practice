@@ -9,16 +9,18 @@
 #define app_hpp
 
 #include <stdio.h>
-#include "app_window.hpp"
+#include "Process/process.hpp"
 
-namespace process{
-    class Process{
+namespace app{
+    class App{
         public:
             static constexpr int width = 800;
             static constexpr int height = 600;
+            const std::string app_name = "Vulkan App";
             void run();
         private:
-            ProcessWindow window{width,height,"Hello vulkan!"};
+            process::Process main_Process{width,height,app_name};
     };
-}
+} 
+
 #endif /* app_hpp */

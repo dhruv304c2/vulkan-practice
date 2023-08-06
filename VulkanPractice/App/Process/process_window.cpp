@@ -7,10 +7,11 @@
 #include "process_window.hpp"
 
 namespace process{
-    ProcessWindow::ProcessWindow(int width, int height, std::string window_name) :
+    ProcessWindow::ProcessWindow(int width, int height, std::string window_name, bool resizable) :
         width{width},
         height{height},
-        window_name{window_name}
+        window_name{window_name},
+        resizable{resizable}
     {
         ProcessWindow::init_window();
     }
@@ -23,7 +24,7 @@ namespace process{
     void ProcessWindow::init_window(){
         glfwInit();
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API); //No API as we are not using Open Gl
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); //Need another way to handle window resizing
+        if(!resizable) glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
         
         window = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
     }

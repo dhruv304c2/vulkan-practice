@@ -1,8 +1,8 @@
 #include <iostream>
-#include "process.hpp"
+#include "App/app.hpp"
 
 int main() {
-    process::Process app{};
+    app::App app{};
     
     try {
         app.run();
