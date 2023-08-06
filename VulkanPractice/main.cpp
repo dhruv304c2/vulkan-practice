@@ -1,14 +1,15 @@
-//
-//  main.cpp
-//  VulkanPractice
-//
-//  Created by Tech Alchemy on 06/08/23.
-//
-
 #include <iostream>
+#include "app.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+int main() {
+    app::App app{};
+    
+    try {
+        app.run();
+    } catch (const std::exception &c) {
+        std::cerr << c.what() << std::endl;
+        return EXIT_FAILURE;
+    }
+    
+    return EXIT_SUCCESS;
 }
