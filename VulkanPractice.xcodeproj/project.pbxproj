@@ -13,7 +13,7 @@
 		5363A3E82A801F6A00C17031 /* libvulkan.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5363A3E12A801C2B00C17031 /* libvulkan.dylib */; };
 		5363A3E92A801F6D00C17031 /* libvulkan.1.3.250.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5363A3DF2A801C1700C17031 /* libvulkan.1.3.250.dylib */; };
 		5363A3EE2A8022BC00C17031 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5363A3ED2A8022BC00C17031 /* libglfw.3.3.dylib */; };
-		5363A3F02A8022C800C17031 /* libglfw.3.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5363A3EF2A8022C800C17031 /* libglfw.3.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		5363A3F02A8022C800C17031 /* libglfw.3.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5363A3EF2A8022C800C17031 /* libglfw.3.3.dylib */; };
 		5363A3F32A80299900C17031 /* process_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3F12A80299900C17031 /* process_window.cpp */; };
 		5363A3F62A802F8900C17031 /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3F42A802F8900C17031 /* process.cpp */; };
 		53B1E0CE2A8047390073A966 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53B1E0CC2A8047390073A966 /* app.cpp */; };
@@ -35,6 +35,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		532B85492A80C11900ED6606 /* simple_shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simple_shader.vert; sourceTree = "<group>"; };
+		532B854A2A80C11900ED6606 /* simple_shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simple_shader.frag; sourceTree = "<group>"; };
+		532B854F2A80C59E00ED6606 /* simple_shader.frag.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = simple_shader.frag.spv; sourceTree = "<group>"; };
+		532B85502A80C5E100ED6606 /* simple_shader.vert.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = simple_shader.vert.spv; sourceTree = "<group>"; };
 		5363A3CE2A8013FA00C17031 /* VulkanPractice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VulkanPractice; sourceTree = BUILT_PRODUCTS_DIR; };
 		5363A3D12A8013FA00C17031 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5363A3D92A80194600C17031 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Bin/glfw-3.3.8.bin.MACOS/lib-x86_64/libglfw.3.dylib"; sourceTree = "<group>"; };
@@ -51,6 +55,7 @@
 		5363A3F52A802F8900C17031 /* process.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = process.hpp; sourceTree = "<group>"; };
 		53B1E0CC2A8047390073A966 /* app.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
 		53B1E0CD2A8047390073A966 /* app.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = app.hpp; sourceTree = "<group>"; };
+		53BE012C2A80BA0E00459F0D /* compileShaders.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = compileShaders.sh; path = VulkanPractice/compileShaders.sh; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +95,10 @@
 		5363A3D02A8013FA00C17031 /* VulkanPractice */ = {
 			isa = PBXGroup;
 			children = (
-				53B1E0D02A8047860073A966 /* App */,
+				53B1E0D12A80B4E30073A966 /* shaders */,
+				53B1E0D02A8047860073A966 /* app */,
 				5363A3D12A8013FA00C17031 /* main.cpp */,
+				53BE012C2A80BA0E00459F0D /* compileShaders.sh */,
 			);
 			path = VulkanPractice;
 			sourceTree = "<group>";
@@ -120,14 +127,25 @@
 			path = VulkanPractice/App/Process;
 			sourceTree = SOURCE_ROOT;
 		};
-		53B1E0D02A8047860073A966 /* App */ = {
+		53B1E0D02A8047860073A966 /* app */ = {
 			isa = PBXGroup;
 			children = (
 				53B1E0CF2A8047700073A966 /* Process */,
 				53B1E0CC2A8047390073A966 /* app.cpp */,
 				53B1E0CD2A8047390073A966 /* app.hpp */,
 			);
-			path = App;
+			path = app;
+			sourceTree = "<group>";
+		};
+		53B1E0D12A80B4E30073A966 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				532B854F2A80C59E00ED6606 /* simple_shader.frag.spv */,
+				532B854A2A80C11900ED6606 /* simple_shader.frag */,
+				532B85492A80C11900ED6606 /* simple_shader.vert */,
+				532B85502A80C5E100ED6606 /* simple_shader.vert.spv */,
+			);
+			path = shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5363A3D52A8013FA00C17031 /* Build configuration list for PBXNativeTarget "VulkanPractice" */;
 			buildPhases = (
+				532B85542A80CB5E00ED6606 /* ShellScript */,
 				5363A3CA2A8013FA00C17031 /* Sources */,
 				5363A3E72A801F3B00C17031 /* Frameworks */,
 				5363A3CC2A8013FA00C17031 /* CopyFiles */,
@@ -181,6 +200,27 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		532B85542A80CB5E00ED6606 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/shaders",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/VulkanPractice/compileShaders.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5363A3CA2A8013FA00C17031 /* Sources */ = {
