@@ -1,10 +1,3 @@
-//
-//  app.cpp
-//  VulkanPractice
-//
-//  Created by Tech Alchemy on 07/08/23.
-//
-
 #include "app.hpp"
 #include <iostream>
 #include "vulkan_helper.hpp"

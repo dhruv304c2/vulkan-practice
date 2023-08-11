@@ -10,6 +10,6 @@ int main() {
         return EXIT_FAILURE;
     }
     
-    //delete app;
+    delete app;
     return EXIT_SUCCESS;
 }

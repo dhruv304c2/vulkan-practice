@@ -1,10 +1,3 @@
-//
-//  app.hpp
-//  VulkanPractice
-//
-//  Created by Tech Alchemy on 07/08/23.
-//
-
 #ifndef app_hpp
 #define app_hpp
 
@@ -29,4 +22,4 @@ namespace app{
     };
 } 
 
-#endif /* app_hpp */
+#endif

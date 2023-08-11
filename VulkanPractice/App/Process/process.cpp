@@ -33,6 +33,6 @@ namespace process{
         }
         is_running = false;
         float runTime = get_process_run_time();
-        std::cout << "Process ended in time: " << runTime << " seconds" << std::endl;
+        std::cout << process_name <<" Process ended in time: " << runTime << " seconds" << std::endl;
     }
 }
