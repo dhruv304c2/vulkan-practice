@@ -2,14 +2,14 @@
 #include "App/app.hpp"
 
 int main() {
-    app::App app{};
-    
+    auto app = app::App::get_instance();
     try {
-        app.run();
+        app -> run();
     } catch (const std::exception &c) {
         std::cerr << c.what() << std::endl;
         return EXIT_FAILURE;
     }
     
+    //delete app;
     return EXIT_SUCCESS;
 }

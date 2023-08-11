@@ -5,6 +5,7 @@
 //  Created by Tech Alchemy on 07/08/23.
 //
 #include "process_window.hpp"
+#include <iostream>
 
 namespace process{
     ProcessWindow::ProcessWindow(int width, int height, std::string window_name, bool resizable) :
@@ -19,6 +20,7 @@ namespace process{
     ProcessWindow::~ProcessWindow(){
         glfwDestroyWindow(window);
         glfwTerminate();
+        std::cout << "GLFW widow terminated and destroyed" << std::endl;
     }
 
     void ProcessWindow::init_window(){

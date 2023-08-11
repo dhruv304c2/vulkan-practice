@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5341FB8B2A83E96A0052453C /* render_pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5341FB892A83E96A0052453C /* render_pipeline.cpp */; };
+		534DDF6A2A8532E300E69A82 /* vulkan_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 534DDF682A8532E300E69A82 /* vulkan_helper.cpp */; };
 		5363A3D22A8013FA00C17031 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3D12A8013FA00C17031 /* main.cpp */; };
 		5363A3E02A801C1700C17031 /* libvulkan.1.3.250.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5363A3DF2A801C1700C17031 /* libvulkan.1.3.250.dylib */; };
 		5363A3E22A801C2B00C17031 /* libvulkan.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5363A3E12A801C2B00C17031 /* libvulkan.dylib */; };
@@ -16,6 +18,7 @@
 		5363A3F02A8022C800C17031 /* libglfw.3.3.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5363A3EF2A8022C800C17031 /* libglfw.3.3.dylib */; };
 		5363A3F32A80299900C17031 /* process_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3F12A80299900C17031 /* process_window.cpp */; };
 		5363A3F62A802F8900C17031 /* process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5363A3F42A802F8900C17031 /* process.cpp */; };
+		53904C352A85D0C700438941 /* generic_singleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53904C332A85D0C700438941 /* generic_singleton.cpp */; };
 		53B1E0CE2A8047390073A966 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 53B1E0CC2A8047390073A966 /* app.cpp */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +42,10 @@
 		532B854A2A80C11900ED6606 /* simple_shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simple_shader.frag; sourceTree = "<group>"; };
 		532B854F2A80C59E00ED6606 /* simple_shader.frag.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = simple_shader.frag.spv; sourceTree = "<group>"; };
 		532B85502A80C5E100ED6606 /* simple_shader.vert.spv */ = {isa = PBXFileReference; lastKnownFileType = file; path = simple_shader.vert.spv; sourceTree = "<group>"; };
+		5341FB892A83E96A0052453C /* render_pipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = render_pipeline.cpp; sourceTree = "<group>"; };
+		5341FB8A2A83E96A0052453C /* render_pipeline.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = render_pipeline.hpp; sourceTree = "<group>"; };
+		534DDF682A8532E300E69A82 /* vulkan_helper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = vulkan_helper.cpp; sourceTree = "<group>"; };
+		534DDF692A8532E300E69A82 /* vulkan_helper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = vulkan_helper.hpp; sourceTree = "<group>"; };
 		5363A3CE2A8013FA00C17031 /* VulkanPractice */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VulkanPractice; sourceTree = BUILT_PRODUCTS_DIR; };
 		5363A3D12A8013FA00C17031 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		5363A3D92A80194600C17031 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = "../../../../Library/Mobile Documents/com~apple~CloudDocs/Bin/glfw-3.3.8.bin.MACOS/lib-x86_64/libglfw.3.dylib"; sourceTree = "<group>"; };
@@ -53,6 +60,8 @@
 		5363A3F22A80299900C17031 /* process_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = process_window.hpp; sourceTree = "<group>"; };
 		5363A3F42A802F8900C17031 /* process.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = process.cpp; sourceTree = "<group>"; };
 		5363A3F52A802F8900C17031 /* process.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = process.hpp; sourceTree = "<group>"; };
+		53904C332A85D0C700438941 /* generic_singleton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = generic_singleton.cpp; sourceTree = "<group>"; };
+		53904C342A85D0C700438941 /* generic_singleton.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = generic_singleton.hpp; sourceTree = "<group>"; };
 		53B1E0CC2A8047390073A966 /* app.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = app.cpp; sourceTree = "<group>"; };
 		53B1E0CD2A8047390073A966 /* app.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = app.hpp; sourceTree = "<group>"; };
 		53BE012C2A80BA0E00459F0D /* compileShaders.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = compileShaders.sh; path = VulkanPractice/compileShaders.sh; sourceTree = SOURCE_ROOT; };
@@ -72,6 +81,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5341FB882A83E8FE0052453C /* RenderPipeline */ = {
+			isa = PBXGroup;
+			children = (
+				5341FB892A83E96A0052453C /* render_pipeline.cpp */,
+				5341FB8A2A83E96A0052453C /* render_pipeline.hpp */,
+			);
+			path = RenderPipeline;
+			sourceTree = "<group>";
+		};
+		534DDF672A8532A400E69A82 /* VulkanHelper */ = {
+			isa = PBXGroup;
+			children = (
+				534DDF682A8532E300E69A82 /* vulkan_helper.cpp */,
+				534DDF692A8532E300E69A82 /* vulkan_helper.hpp */,
+			);
+			path = VulkanHelper;
+			sourceTree = "<group>";
+		};
 		5363A3C52A8013FA00C17031 = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +122,10 @@
 		5363A3D02A8013FA00C17031 /* VulkanPractice */ = {
 			isa = PBXGroup;
 			children = (
+				53904C322A85D08D00438941 /* Common */,
+				534DDF672A8532A400E69A82 /* VulkanHelper */,
 				53B1E0D12A80B4E30073A966 /* shaders */,
-				53B1E0D02A8047860073A966 /* app */,
+				53B1E0D02A8047860073A966 /* App */,
 				5363A3D12A8013FA00C17031 /* main.cpp */,
 				53BE012C2A80BA0E00459F0D /* compileShaders.sh */,
 			);
@@ -115,6 +144,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		53904C322A85D08D00438941 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				53904C332A85D0C700438941 /* generic_singleton.cpp */,
+				53904C342A85D0C700438941 /* generic_singleton.hpp */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		53B1E0CF2A8047700073A966 /* Process */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,14 +165,15 @@
 			path = VulkanPractice/App/Process;
 			sourceTree = SOURCE_ROOT;
 		};
-		53B1E0D02A8047860073A966 /* app */ = {
+		53B1E0D02A8047860073A966 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5341FB882A83E8FE0052453C /* RenderPipeline */,
 				53B1E0CF2A8047700073A966 /* Process */,
 				53B1E0CC2A8047390073A966 /* app.cpp */,
 				53B1E0CD2A8047390073A966 /* app.hpp */,
 			);
-			path = app;
+			path = App;
 			sourceTree = "<group>";
 		};
 		53B1E0D12A80B4E30073A966 /* shaders */ = {
@@ -227,6 +266,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				534DDF6A2A8532E300E69A82 /* vulkan_helper.cpp in Sources */,
+				5341FB8B2A83E96A0052453C /* render_pipeline.cpp in Sources */,
+				53904C352A85D0C700438941 /* generic_singleton.cpp in Sources */,
 				5363A3F62A802F8900C17031 /* process.cpp in Sources */,
 				53B1E0CE2A8047390073A966 /* app.cpp in Sources */,
 				5363A3D22A8013FA00C17031 /* main.cpp in Sources */,
