@@ -30,5 +30,4 @@ namespace process{
         
         window = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
     }
-
 }

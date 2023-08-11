@@ -2,8 +2,26 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <iostream>
+#include <cstring>
+#include "log_utility.hpp"
+#include "vulkan_device_manager.hpp"
 
 namespace vulkanHelper{
+
+    VkInstance VulkanHelper::get_vkInstance(){
+        return get_instance() -> instance;
+    }
+
+    void VulkanHelper::initalise_vulkan(const std::string app_name){
+        VulkanDeviceManager deviceManager;
+        
+        create_instance(app_name);
+        print_all_extensions();
+        
+        //selecting physical device
+        physical_device = deviceManager.get_device();
+        deviceManager.print_device_details();
+    }
 
     void VulkanHelper::clean_up(){
         vkDestroyInstance(get_vkInstance(), nullptr);
@@ -11,7 +29,14 @@ namespace vulkanHelper{
     }
 
     void VulkanHelper::create_instance(const std::string app_name){
-            
+        
+        common::LogUtility::skip(1);
+        std::cout << "Initialisng Vulkan...." << std::endl;
+        
+        if(enabledValidationLayers && !check_validation_layer_support()){
+            throw std::runtime_error("[Error] unsupported validation layer added");
+        }
+    
         VkApplicationInfo appInfo{};
         appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
         appInfo.pApplicationName = app_name.data();
@@ -37,22 +62,62 @@ namespace vulkanHelper{
         createInfo.flags |= VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR; //To fix an error while working on macOS
         createInfo.enabledExtensionCount = (uint32_t) requiredExtensions.size();
         createInfo.ppEnabledExtensionNames = requiredExtensions.data();
+        
+        //Enabling validation layers
+        if(enabledValidationLayers){
+            createInfo.enabledLayerCount = static_cast<uint32_t>(added_validation_layers.size());
+            createInfo.ppEnabledLayerNames = added_validation_layers.data();
+        }
         createInfo.enabledLayerCount = 0;
 
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-            throw std::runtime_error("failed to create instance!");
+            throw std::runtime_error("[Error] failed to create instance!");
         }
-    
-        //Logging available vK extensions
-        uint32_t extensionCount = 0;
-        std::vector<VkExtensionProperties> extensions;
         
+        std::cout << "Vulkan initialisation completed successfully" << std::endl;
+    }
+
+    void VulkanHelper::print_all_extensions(){
+        common::LogUtility::skip(3);
+        
+        uint32_t extensionCount = 0;
+        vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+        std::vector<VkExtensionProperties> extensions(extensionCount);
         vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
         
-        //std::cout << "All instance extension name" << std::endl;
+        std::cout << "All instance extensions: " << std::endl;
         for(int i=0; i< extensionCount; i++){
-            //Commneted out because giving errors...
-            //std::cout << extensions[i].extensionName << std::endl;
+            std::cout << extensions[i].extensionName << std::endl;
         }
+        
+        common::LogUtility::skip(3);
+    }
+
+    bool VulkanHelper::check_validation_layer_support(){
+        common::LogUtility::skip(3);
+        
+        uint32_t availableLayerCount = 0;
+        vkEnumerateInstanceLayerProperties(&availableLayerCount, nullptr);
+        std::vector<VkLayerProperties> availableLayers(availableLayerCount);
+        vkEnumerateInstanceLayerProperties(&availableLayerCount, availableLayers.data());
+        
+        std::cout << "Available validation layers:" << std::endl;
+        for(const char* layerName: added_validation_layers){
+            bool found = false;
+            for(auto availableLayer: availableLayers){
+                std::cout << availableLayer.layerName;
+                if(strcmp(availableLayer.layerName, layerName) == 0){
+                    found = true;
+                    common::LogUtility::log_green_text(" (required)");
+                }
+                std::cout << std::endl;
+            }
+            if(!found){
+                return false;
+            }
+        }
+        
+        common::LogUtility::skip(3);
+        return true;
     }
 }
