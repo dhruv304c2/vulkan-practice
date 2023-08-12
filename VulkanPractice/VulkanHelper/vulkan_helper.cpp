@@ -13,14 +13,15 @@ namespace vulkanHelper{
     }
 
     void VulkanHelper::initalise_vulkan(const std::string app_name){
-        VulkanDeviceManager deviceManager;
-        
         create_instance(app_name);
         print_all_extensions();
         
         //selecting physical device
-        physical_device = deviceManager.get_device();
-        deviceManager.print_device_details();
+        deviceManager.get_physical_device();
+        deviceManager.print_physical_device_details();
+        
+        //creating logical device
+        deviceManager.get_device();
     }
 
     void VulkanHelper::clean_up(){

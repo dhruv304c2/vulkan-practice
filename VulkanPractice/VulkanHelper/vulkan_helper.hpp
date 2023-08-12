@@ -2,17 +2,19 @@
 #ifndef vulkan_helper_hpp
 #define vulkan_helper_hpp
 
-#include <stdio.h>
+#include <iostream>
 #include <vulkan/vulkan.h>
 #include "generic_singleton.hpp"
 #include <string>
 #include <vector>
+#include "vulkan_device_manager.hpp"
+//#include <optional>
 
 namespace vulkanHelper{
 
     class VulkanHelper : public common::GenericSingleton<VulkanHelper>{
         public:
-            ~VulkanHelper(){clean_up();}
+            ~VulkanHelper(){clean_up();std::cout<< "Vulkan instance clean up" << std::endl;}
             static VkInstance get_vkInstance();
             void initalise_vulkan(const std::string app_name);
         private:
@@ -30,7 +32,7 @@ namespace vulkanHelper{
             bool enabledValidationLayers = true;
 #endif
             VkInstance instance;
-            VkPhysicalDevice physical_device = VK_NULL_HANDLE;
+            VulkanDeviceManager deviceManager{};
     };
 }
 
