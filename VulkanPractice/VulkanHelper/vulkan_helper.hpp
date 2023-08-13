@@ -16,7 +16,7 @@ namespace vulkanHelper{
         public:
             ~VulkanHelper(){clean_up();std::cout<< "Vulkan instance clean up" << std::endl;}
             static VkInstance get_vkInstance();
-            void initalise_vulkan(const std::string app_name);
+            void initalise_vulkan(const std::string app_name, GLFWwindow *window);
         private:
             void create_instance(const std::string app_name);
             bool check_validation_layer_support();

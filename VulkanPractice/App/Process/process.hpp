@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <ctime>
 #include "process_window.hpp"
+#include <GLFW/glfw3.h>
 
 namespace process{
     class Process{
@@ -23,6 +24,7 @@ namespace process{
             bool is_running = false;
             void run();
             unsigned int get_process_run_time();
+            GLFWwindow* get_window();
         private:
             ProcessWindow window{width,height,process_name, resizable};
             time_t start_time;

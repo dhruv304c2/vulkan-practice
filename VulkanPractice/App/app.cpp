@@ -8,7 +8,7 @@ namespace app{
     
     void App::run(){
         std::cout << "Running.. " << app_name << std::endl;
-        VulkanHelper::get_instance() -> initalise_vulkan(app_name);
+        VulkanHelper::get_instance() -> initalise_vulkan(app_name, main_process.get_window());
         main_process.run();
     }
 

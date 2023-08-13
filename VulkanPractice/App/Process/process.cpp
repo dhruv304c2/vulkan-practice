@@ -35,4 +35,8 @@ namespace process{
         float runTime = get_process_run_time();
         std::cout << process_name <<" Process ended in time: " << runTime << " seconds" << std::endl;
     }
+
+    GLFWwindow* Process::get_window(){
+        return window.get_window();
+    }
 }

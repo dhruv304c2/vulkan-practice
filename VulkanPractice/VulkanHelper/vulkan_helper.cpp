@@ -12,9 +12,11 @@ namespace vulkanHelper{
         return get_instance() -> instance;
     }
 
-    void VulkanHelper::initalise_vulkan(const std::string app_name){
+    void VulkanHelper::initalise_vulkan(const std::string app_name, GLFWwindow* window){
         create_instance(app_name);
         print_all_extensions();
+        //creating window surface
+        deviceManager.create_surface(instance, window);
         
         //selecting physical device
         deviceManager.get_physical_device();

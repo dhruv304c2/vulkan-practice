@@ -17,13 +17,14 @@ namespace process {
             ProcessWindow(int width, int height, std::string name, bool resizable);
             ~ProcessWindow();
             bool should_close(){return glfwWindowShouldClose(window);}
+            GLFWwindow* get_window(){return window;};
         private:
             void init_window();
             const int width;
             const int height;
             const bool resizable;
             const std::string window_name;
-            GLFWwindow *window;
+            GLFWwindow* window;
     };
 }
 
