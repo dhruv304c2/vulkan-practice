@@ -8,19 +8,19 @@
 #include <string>
 #include <vector>
 #include "vulkan_device_manager.hpp"
+#include "vulkan_surface_manager.hpp"
 //#include <optional>
 
 namespace vulkanHelper{
 
     class VulkanHelper : public common::GenericSingleton<VulkanHelper>{
         public:
-            ~VulkanHelper(){clean_up();std::cout<< "Vulkan instance clean up" << std::endl;}
             static VkInstance get_vkInstance();
             void initalise_vulkan(const std::string app_name, GLFWwindow *window);
+            void clean_up();
         private:
             void create_instance(const std::string app_name);
             bool check_validation_layer_support();
-            void clean_up();
             void print_all_extensions();
             
             const std::vector<const char*> added_validation_layers = {
@@ -33,6 +33,7 @@ namespace vulkanHelper{
 #endif
             VkInstance instance;
             VulkanDeviceManager deviceManager{};
+            VulkanSurfaceManager surfaceManager{};
     };
 }
 

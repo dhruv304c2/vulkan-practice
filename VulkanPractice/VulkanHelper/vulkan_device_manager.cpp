@@ -1,6 +1,7 @@
 #include "vulkan_device_manager.hpp"
 #include "vulkan_helper.hpp"
 #include "log_utility.hpp"
+#include "vulkan_surface_manager.hpp"
 #include <set>
 
 namespace vulkanHelper{
@@ -17,13 +18,10 @@ namespace vulkanHelper{
     };
 
     VkPhysicalDevice VulkanDeviceManager::get_physical_device(){
-        if(selected_physical_device != VK_NULL_HANDLE)
-            return selected_physical_device;
-        select_device();
         return selected_physical_device;
     }
 
-    void VulkanDeviceManager::select_device(){
+    void VulkanDeviceManager::select_device(VkSurfaceKHR surface){
         uint32_t deviceCount = 0;
         VkInstance vk = VulkanHelper::get_vkInstance();
         vkEnumeratePhysicalDevices(vk, &deviceCount, nullptr);
@@ -33,7 +31,7 @@ namespace vulkanHelper{
         std::vector<VkPhysicalDevice> devices(deviceCount);
         vkEnumeratePhysicalDevices(vk, &deviceCount, devices.data());
         for(auto device : devices){
-            if(is_device_suitable(device)){
+            if(is_device_suitable(device,surface)){
                 selected_physical_device = device;
                 vkGetPhysicalDeviceProperties(device, &properties);
                 vkGetPhysicalDeviceFeatures(device, &features);
@@ -48,7 +46,7 @@ namespace vulkanHelper{
         std::cout << "\nsuitable physical device found successfully" << std::endl;
     }
 
-    bool VulkanDeviceManager::is_device_suitable(VkPhysicalDevice device){
+    bool VulkanDeviceManager::is_device_suitable(VkPhysicalDevice device, VkSurfaceKHR surface){
         VkPhysicalDeviceProperties deviceProperties;
         VkPhysicalDeviceFeatures deviceFeatures;
         vkGetPhysicalDeviceProperties(device, &deviceProperties);
@@ -84,10 +82,10 @@ namespace vulkanHelper{
         }
         
         // finding queue family indicies
-        auto queueFamilyIndices= find_queue_families(device);
+        auto queueFamilyIndices= find_queue_families(device, surface);
         
         // getting swap chain support details
-        auto swapChainSupportDetails = query_swapchain_support(device);
+        auto swapChainSupportDetails = VulkanSurfaceManager::query_swapchain_support(device,surface);
         
         bool geometryShaderTestPassed = (deviceFeatures.geometryShader || !requires_geometry_shader);
         bool suitable = true;
@@ -116,7 +114,7 @@ namespace vulkanHelper{
         common::LogUtility::skip(1);
     }
 
-    QueueFamilyIndices VulkanDeviceManager::find_queue_families(VkPhysicalDevice device){
+    QueueFamilyIndices VulkanDeviceManager::find_queue_families(VkPhysicalDevice device, VkSurfaceKHR surface){
         
         //initalising output
         QueueFamilyIndices queueFamilyIndices{};
@@ -134,7 +132,7 @@ namespace vulkanHelper{
             }
             
             VkBool32 presentSupport = false;
-            vkGetPhysicalDeviceSurfaceSupportKHR(device, i, get_surface(), &presentSupport);
+            vkGetPhysicalDeviceSurfaceSupportKHR(device, i, surface, &presentSupport);
             if(presentSupport){
                 queueFamilyIndices.present_family = i;
             }
@@ -144,26 +142,12 @@ namespace vulkanHelper{
         return queueFamilyIndices;
     }
 
-    SwapChainSupportDetails VulkanDeviceManager::query_swapchain_support(VkPhysicalDevice device){
-        SwapChainSupportDetails details{};
-        vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, get_surface(), &details.capabilities);
-        
-        uint32_t formatCount = 0;
-        vkGetPhysicalDeviceSurfaceFormatsKHR(device, get_surface(), &formatCount, nullptr);
-        details.formats.resize(formatCount);
-        vkGetPhysicalDeviceSurfaceFormatsKHR(device, get_surface(), &formatCount, details.formats.data());
-        
-        uint32_t presentModeCount = 0;
-        vkGetPhysicalDeviceSurfacePresentModesKHR(device, get_surface(), &presentModeCount, nullptr);
-        details.presentModes.resize(presentModeCount);
-        vkGetPhysicalDeviceSurfacePresentModesKHR(device, get_surface(), &presentModeCount, details.presentModes.data());
-        
-        return details;
+    VkDevice VulkanDeviceManager::get_device(){
+        return logical_device;
     }
 
-    VkDevice VulkanDeviceManager::get_device(){
-        if(logical_device != VK_NULL_HANDLE) return logical_device;
-        auto queueFamilyIndices = find_queue_families(get_physical_device());
+    void VulkanDeviceManager::create_logical_device(VkSurfaceKHR surface){
+        auto queueFamilyIndices = find_queue_families(get_physical_device(), surface);
         
         
         //device queue creation
@@ -195,26 +179,10 @@ namespace vulkanHelper{
         if(vkCreateDevice(get_physical_device(), &createInfo, nullptr, &logical_device) != VK_SUCCESS){
             throw  std::runtime_error("[Error] failed to create logical device interface");
         }
-        std::cout << "Logical device interface created sucessfully" << std::endl;
+        std::cout << "logical device interface created sucessfully" << std::endl;
         
         //getting device queue handles
         vkGetDeviceQueue(logical_device, queueFamilyIndices.graphics_family.value(), 0, &graphics_queue);
         vkGetDeviceQueue(logical_device, queueFamilyIndices.present_family.value(), 0, &presentation_queue);
-        
-        return logical_device;
-    }
-
-    void VulkanDeviceManager::create_surface(VkInstance vk_instance, GLFWwindow *window){
-        if(glfwCreateWindowSurface(vk_instance, window, nullptr, &surface) != VK_SUCCESS){
-            throw std::runtime_error("[Error] failed to create window surface!");
-        }
-    }
-
-    VkSurfaceKHR VulkanDeviceManager::get_surface(){
-        return surface;
-    }
-
-    void VulkanDeviceManager::clean_up(){
-        vkDestroyDevice(logical_device, nullptr);
     }
 }

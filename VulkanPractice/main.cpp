@@ -10,6 +10,7 @@ int main() {
         return EXIT_FAILURE;
     }
     
+    app -> clean_up();
     delete app;
     return EXIT_SUCCESS;
 }

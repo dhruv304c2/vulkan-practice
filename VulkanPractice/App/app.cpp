@@ -15,4 +15,8 @@ namespace app{
     bool App::is_running(){
         return main_process.is_running;
     }
+
+    void App::clean_up(){
+        VulkanHelper::get_instance() -> clean_up();
+    }
 }

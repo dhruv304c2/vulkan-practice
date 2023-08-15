@@ -16,19 +16,29 @@ namespace vulkanHelper{
         create_instance(app_name);
         print_all_extensions();
         //creating window surface
-        deviceManager.create_surface(instance, window);
+        surfaceManager.create_surface(instance, window);
+        auto surface = surfaceManager.get_surface();
         
         //selecting physical device
-        deviceManager.get_physical_device();
+        deviceManager.select_device(surface);
         deviceManager.print_physical_device_details();
         
         //creating logical device
-        deviceManager.get_device();
+        deviceManager.create_logical_device(surface);
+        
+        //creating swap chain
+        surfaceManager.create_swapchain(deviceManager.get_physical_device(), deviceManager.get_device(), window);
     }
 
     void VulkanHelper::clean_up(){
+        std::cout << "\nstarting vulkan clean up: " << std::endl;
+        surfaceManager.clean_up(instance, deviceManager.get_device());
+        vkDestroySwapchainKHR(deviceManager.get_device(), surfaceManager.get_swapchain(), nullptr);
+        vkDestroyDevice(deviceManager.get_device(), nullptr);
+        std::cout << "logical device destroyed successfully" << std::endl;
         vkDestroyInstance(get_vkInstance(), nullptr);
-        std::cout << "Performing vulkan clean up" << std::endl;
+        std::cout << "vulkan instance destroyed successfully" << std::endl;
+        std::cout << "\nvulkan clean up successfull " << std::endl;
     }
 
     void VulkanHelper::create_instance(const std::string app_name){
